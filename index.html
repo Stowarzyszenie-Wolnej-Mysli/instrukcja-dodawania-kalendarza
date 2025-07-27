@@ -115,9 +115,9 @@
         }
         .phone-mockup {
             position: relative;
-            width: 280px;
-            max-width: 100%; /* Ensures the mockup shrinks on smaller screens */
-            height: 560px;
+            width: 100%; /* Changed for responsiveness */
+            max-width: 280px;
+            aspect-ratio: 1 / 2; /* Maintain aspect ratio */
             background-color: #000000;
             border-radius: 36px;
             padding: 12px;
@@ -202,9 +202,6 @@
             margin-top: 12px;
             color: #d1d5db; /* Lighter text for readability */
         }
-        .polish-flag-gradient {
-            background: linear-gradient(to bottom, #ffffff 50%, #ed222e 50%);
-        }
         .gold-accent {
             border: 2px solid #ffd700;
         }
@@ -242,26 +239,26 @@
                         <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Otwórz link do kalendarza</h2>
                     </div>
                     
-                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="grid grid-cols-2 gap-4 md:gap-12 items-center">
                         <div>
-                            <p class="text-lg md:text-xl text-white mb-6">Kliknij poniższy link, aby otworzyć kalendarz stowarzyszenia Wolnej Myśli:</p>
+                            <p class="text-base md:text-xl text-white mb-6">Kliknij poniższy link, aby otworzyć kalendarz stowarzyszenia Wolnej Myśli:</p>
                             
                             <div class="bg-white bg-opacity-20 rounded-xl p-4 mb-6 text-center border-2 border-white">
-                                <a href="https://calendar.google.com/calendar/u/0?cid=NWIwMDJmYzFkODUxZGI0OTJjODQzYTAxMGM1NWYwZjI1YTBiYzI4ZDY3MmNhZTdiM2I1ZTY1MWY4NWIxNGMwZUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" class="text-white hover:text-gold-300 font-medium text-base md:text-lg flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <a href="https://calendar.google.com/calendar/u/0?cid=NWIwMDJmYzFkODUxZGI0OTJjODQzYTAxMGM1NWYwZjI1YTBiYzI4ZDY3MmNhZTdiM2I1ZTY1MWY4NWIxNGMwZUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" class="text-white hover:text-gold-300 font-medium text-sm md:text-lg flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
-                                    Link do kalendarza stowarzyszenia
+                                    <span class="truncate">Link do kalendarza</span>
                                 </a>
                             </div>
                             
-                            <p class="text-white mb-3">Link źródłowy (jeśli hiperłącze nie działa):</p>
-                            <div class="link-box text-sm border-2 border-gold-500 bg-black bg-opacity-20 text-gold-300">
+                            <p class="text-white mb-3 text-sm">Link źródłowy (jeśli hiperłącze nie działa):</p>
+                            <div class="link-box text-xs border-2 border-gold-500 bg-black bg-opacity-20 text-gold-300">
                                 https://calendar.google.com/calendar/u/0?cid=NWIwMDJmYzFkODUxZGI0OTJjODQzYTAxMGM1NWYwZjI1YTBiYzI4ZDY3MmNhZTdiM2I1ZTY1MWY4NWIxNGMwZUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t
                             </div>
                         </div>
                         
-                        <div class="flex justify-center">
+                        <div class="flex justify-center items-center">
                             <div class="phone-mockup">
                                 <div class="phone-screen">
                                     <div class="browser-bar">
@@ -271,7 +268,7 @@
                                         <div class="browser-address">calendar.google.com</div>
                                     </div>
                                     <div class="p-4 flex flex-col items-center justify-center h-full bg-gray-100">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-24 h-24 mb-6">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-16 h-16 md:w-24 md:h-24 mb-6">
                                             <rect width="16" height="16" x="12" y="16" fill="#fff"/>
                                             <polygon fill="#ed222e" points="32,16 32,8 24,8 24,16 16,16 16,24 24,24 24,32 32,32 32,24 40,24 40,16"/>
                                             <path fill="#b81822" d="M24,4v4h8v8h8V8c0-2.2-1.8-4-4-4H24z"/>
@@ -279,9 +276,9 @@
                                             <path fill="#b81822" d="M4,40c0,2.2,1.8,4,4,4h8v-8H4V40z"/>
                                             <path fill="#b81822" d="M36,44c2.2,0,4-1.8,4-4v-4h-8v8H36z"/>
                                         </svg>
-                                        <div class="text-center text-lg font-medium mb-4 text-black">Kalendarz Google</div>
-                                        <div class="bg-red-500 bg-opacity-10 rounded-lg p-4 text-center pulse border border-red-500">
-                                            <span class="font-medium text-black">Kliknij link, aby otworzyć</span>
+                                        <div class="text-center text-base md:text-lg font-medium mb-4 text-black">Kalendarz Google</div>
+                                        <div class="bg-red-500 bg-opacity-10 rounded-lg p-2 md:p-4 text-center pulse border border-red-500">
+                                            <span class="font-medium text-black text-sm">Kliknij link</span>
                                         </div>
                                     </div>
                                 </div>
@@ -290,7 +287,7 @@
                     </div>
                     
                     <div class="mt-12 flex justify-end">
-                        <button onclick="showPage('page-step2')" class="bg-red-500 hover:bg-red-600 text-white text-lg font-medium py-3 px-8 rounded-lg transition-colors flex items-center border-2 border-gold-500">
+                        <button onclick="showPage('page-step2')" class="bg-red-500 hover:bg-red-600 text-white text-base md:text-lg font-medium py-3 px-6 md:px-8 rounded-lg transition-colors flex items-center border-2 border-gold-500">
                             Następny krok
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -329,9 +326,9 @@
                         <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Przełącz na tryb komputerowy</h2>
                     </div>
                     
-                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="grid grid-cols-2 gap-4 md:gap-12 items-center">
                         <div>
-                            <p class="text-lg md:text-xl text-white mb-6">Na urządzeniu mobilnym musisz przełączyć przeglądarkę na tryb komputerowy:</p>
+                            <p class="text-base md:text-xl text-white mb-6">Na urządzeniu mobilnym musisz przełączyć przeglądarkę na tryb komputerowy:</p>
                             
                             <div class="space-y-6">
                                 <div class="bg-white bg-opacity-20 rounded-xl p-4 border border-white">
@@ -339,9 +336,9 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gold-300 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
                                         </svg>
-                                        <h3 class="text-xl font-semibold text-white">Chrome</h3>
+                                        <h3 class="text-lg md:text-xl font-semibold text-white">Chrome</h3>
                                     </div>
-                                    <p class="text-white ml-11">Kliknij trzy kropki ⋮ w prawym górnym rogu i zaznacz opcję "Wersja na komputer"</p>
+                                    <p class="text-white ml-11 text-sm md:text-base">Kliknij trzy kropki ⋮ w prawym górnym rogu i zaznacz opcję "Wersja na komputer"</p>
                                 </div>
                                 
                                 <div class="bg-white bg-opacity-20 rounded-xl p-4 border border-white">
@@ -349,9 +346,9 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gold-300 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
-                                        <h3 class="text-xl font-semibold text-white">Safari</h3>
+                                        <h3 class="text-lg md:text-xl font-semibold text-white">Safari</h3>
                                     </div>
-                                    <p class="text-white ml-11">Stuknij ikonę "aA" w pasku adresu i wybierz "Poproś o wersję na komputer"</p>
+                                    <p class="text-white ml-11 text-sm md:text-base">Stuknij ikonę "aA" w pasku adresu i wybierz "Poproś o wersję na komputer"</p>
                                 </div>
                                 
                                 <div class="bg-white bg-opacity-20 rounded-xl p-4 border border-white">
@@ -359,16 +356,16 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gold-300 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                                         </svg>
-                                        <h3 class="text-xl font-semibold text-white">Samsung Internet i inne</h3>
+                                        <h3 class="text-lg md:text-xl font-semibold text-white">Inne</h3>
                                     </div>
-                                    <p class="text-white ml-11">Kliknij ikonę menu (trzy linie lub kropki) i znajdź opcję "Wersja na komputer" lub "Wersja desktopowa"</p>
+                                    <p class="text-white ml-11 text-sm md:text-base">Kliknij ikonę menu i znajdź opcję "Wersja na komputer"</p>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="flex justify-center">
+                        <div class="flex justify-center items-center">
                             <div class="relative">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-64 h-64 md:w-80 md:h-80">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-full h-auto max-w-[250px] md:max-w-xs">
                                     <path fill="#000000" d="M437.333 64H74.667C51.198 64 32 83.198 32 106.667v298.666C32 428.802 51.198 448 74.667 448h362.666C460.802 448 480 428.802 480 405.333V106.667C480 83.198 460.802 64 437.333 64z"/>
                                     <path fill="#ed222e" d="M437.333 64H74.667C51.198 64 32 83.198 32 106.667v42.666h448v-42.666C480 83.198 460.802 64 437.333 64z"/>
                                     <circle fill="#ed222e" cx="74.667" cy="106.667" r="10.667"/>
@@ -376,9 +373,9 @@
                                     <circle fill="#28c940" cx="138.667" cy="106.667" r="10.667"/>
                                     <path fill="#ffffff" d="M74.667 170.667h362.666v256H74.667z"/>
                                 </svg>
-                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 w-64 pulse gold-accent">
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-4 w-52 md:w-64 pulse gold-accent">
                                     <div class="flex items-center justify-between mb-4">
-                                        <div class="text-lg font-medium text-black">Wersja strony</div>
+                                        <div class="text-base md:text-lg font-medium text-black">Wersja strony</div>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                         </svg>
@@ -386,11 +383,11 @@
                                     <div class="space-y-4 mb-6">
                                         <div class="flex items-center">
                                             <input type="radio" id="mobile" name="version" class="mr-3 h-4 w-4">
-                                            <label for="mobile" class="text-base text-black">Wersja mobilna</label>
+                                            <label for="mobile" class="text-sm md:text-base text-black">Wersja mobilna</label>
                                         </div>
                                         <div class="flex items-center">
                                             <input type="radio" id="desktop" name="version" class="mr-3 h-4 w-4" checked>
-                                            <label for="desktop" class="text-base font-medium text-red-500">Wersja na komputer</label>
+                                            <label for="desktop" class="text-sm md:text-base font-medium text-red-500">Wersja na komputer</label>
                                         </div>
                                     </div>
                                     <button class="w-full bg-red-500 text-white text-base py-2 px-4 rounded-lg border border-gold-500">
@@ -402,7 +399,7 @@
                     </div>
                     
                     <div class="mt-12 flex justify-end">
-                        <button onclick="showPage('page-step3')" class="bg-red-500 hover:bg-red-600 text-white text-lg font-medium py-3 px-8 rounded-lg transition-colors flex items-center border-2 border-gold-500">
+                        <button onclick="showPage('page-step3')" class="bg-red-500 hover:bg-red-600 text-white text-base md:text-lg font-medium py-3 px-6 md:px-8 rounded-lg transition-colors flex items-center border-2 border-gold-500">
                             Następny krok
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -441,9 +438,9 @@
                         <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Potwierdź dodanie kalendarza</h2>
                     </div>
                     
-                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="grid grid-cols-2 gap-4 md:gap-12 items-center">
                         <div>
-                            <p class="text-lg md:text-xl text-white mb-6">Po otwarciu linku w trybie komputerowym pojawi się okno z prośbą o potwierdzenie.</p>
+                            <p class="text-base md:text-xl text-white mb-6">Po otwarciu linku w trybie komputerowym pojawi się okno z prośbą o potwierdzenie.</p>
                             
                             <div class="bg-gold-500 bg-opacity-20 border-l-4 border-gold-500 p-4 mb-6">
                                 <div class="flex">
@@ -453,7 +450,7 @@
                                         </svg>
                                     </div>
                                     <div class="ml-3">
-                                        <p class="text-white text-lg">
+                                        <p class="text-white text-sm md:text-lg">
                                             Kliknij "Tak" lub "Dodaj", aby potwierdzić dodanie kalendarza.
                                         </p>
                                     </div>
@@ -461,8 +458,8 @@
                             </div>
                             
                             <div class="bg-white bg-opacity-20 rounded-xl p-4 border border-white">
-                                <h3 class="text-xl font-semibold mb-4 text-white">Co się stanie po dodaniu kalendarza?</h3>
-                                <ul class="space-y-3 text-lg">
+                                <h3 class="text-lg md:text-xl font-semibold mb-4 text-white">Co się stanie po dodaniu kalendarza?</h3>
+                                <ul class="space-y-3 text-sm md:text-lg">
                                     <li class="flex items-start">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gold-300 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -485,10 +482,10 @@
                             </div>
                         </div>
                         
-                        <div class="flex justify-center">
-                            <div class="bg-white rounded-xl shadow-xl p-8 max-w-sm w-full gold-accent text-black">
-                                <div class="flex items-center mb-8">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-12 h-12 mr-4">
+                        <div class="flex justify-center items-center">
+                            <div class="bg-white rounded-xl shadow-xl p-4 md:p-8 max-w-sm w-full gold-accent text-black">
+                                <div class="flex items-center mb-4 md:mb-8">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-10 h-10 md:w-12 md:h-12 mr-4">
                                         <rect width="16" height="16" x="12" y="16" fill="#fff"/>
                                         <polygon fill="#ed222e" points="32,16 32,8 24,8 24,16 16,16 16,24 24,24 24,32 32,32 32,24 40,24 40,16"/>
                                         <path fill="#b81822" d="M24,4v4h8v8h8V8c0-2.2-1.8-4-4-4H24z"/>
@@ -496,17 +493,17 @@
                                         <path fill="#b81822" d="M4,40c0,2.2,1.8,4,4,4h8v-8H4V40z"/>
                                         <path fill="#b81822" d="M36,44c2.2,0,4-1.8,4-4v-4h-8v8H36z"/>
                                     </svg>
-                                    <div class="text-2xl font-medium">Dodać kalendarz?</div>
+                                    <div class="text-xl md:text-2xl font-medium">Dodać kalendarz?</div>
                                 </div>
                                 <div class="mb-8">
-                                    <div class="text-lg text-gray-600 mb-2">Nazwa kalendarza:</div>
-                                    <div class="text-xl font-medium">Stowarzyszenie Wolnej Myśli</div>
+                                    <div class="text-base md:text-lg text-gray-600 mb-2">Nazwa kalendarza:</div>
+                                    <div class="text-lg md:text-xl font-medium">Stowarzyszenie Wolnej Myśli</div>
                                 </div>
                                 <div class="flex space-x-4">
-                                    <button class="bg-gray-200 hover:bg-gray-300 text-black font-medium py-3 px-6 rounded-lg flex-1 transition-colors text-lg">
+                                    <button class="bg-gray-200 hover:bg-gray-300 text-black font-medium py-2 px-4 md:py-3 md:px-6 rounded-lg flex-1 transition-colors text-base md:text-lg">
                                         Anuluj
                                     </button>
-                                    <button class="pulse bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded-lg flex-1 transition-colors text-lg border border-gold-500">
+                                    <button class="pulse bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 md:py-3 md:px-6 rounded-lg flex-1 transition-colors text-base md:text-lg border border-gold-500">
                                         Dodaj
                                     </button>
                                 </div>
@@ -515,7 +512,7 @@
                     </div>
                     
                     <div class="mt-12 flex justify-end">
-                        <button onclick="showPage('page-step4')" class="bg-red-500 hover:bg-red-600 text-white text-lg font-medium py-3 px-8 rounded-lg transition-colors flex items-center border-2 border-gold-500">
+                        <button onclick="showPage('page-step4')" class="bg-red-500 hover:bg-red-600 text-white text-base md:text-lg font-medium py-3 px-6 md:px-8 rounded-lg transition-colors flex items-center border-2 border-gold-500">
                             Następny krok
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -554,9 +551,9 @@
                         <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Wyłącz tryb komputerowy</h2>
                     </div>
                     
-                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="grid grid-cols-2 gap-4 md:gap-12 items-center">
                         <div>
-                            <p class="text-lg md:text-xl text-white mb-6">Po dodaniu kalendarza możesz wrócić do normalnego trybu przeglądania:</p>
+                            <p class="text-base md:text-xl text-white mb-6">Po dodaniu kalendarza możesz wrócić do normalnego trybu przeglądania:</p>
                             
                             <div class="space-y-6">
                                 <div class="bg-white bg-opacity-20 rounded-xl p-4 border border-white">
@@ -564,9 +561,9 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gold-300 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
                                         </svg>
-                                        <h3 class="text-xl font-semibold text-white">Chrome</h3>
+                                        <h3 class="text-lg md:text-xl font-semibold text-white">Chrome</h3>
                                     </div>
-                                    <p class="text-white ml-11">Kliknij trzy kropki ⋮ w prawym górnym rogu i odznacz opcję "Wersja na komputer"</p>
+                                    <p class="text-white ml-11 text-sm md:text-base">Kliknij trzy kropki ⋮ w prawym górnym rogu i odznacz opcję "Wersja na komputer"</p>
                                 </div>
                                 
                                 <div class="bg-white bg-opacity-20 rounded-xl p-4 border border-white">
@@ -574,9 +571,9 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gold-300 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
-                                        <h3 class="text-xl font-semibold text-white">Safari</h3>
+                                        <h3 class="text-lg md:text-xl font-semibold text-white">Safari</h3>
                                     </div>
-                                    <p class="text-white ml-11">Stuknij ikonę "aA" w pasku adresu i wybierz "Wersja mobilna"</p>
+                                    <p class="text-white ml-11 text-sm md:text-base">Stuknij ikonę "aA" w pasku adresu i wybierz "Wersja mobilna"</p>
                                 </div>
                                 
                                 <div class="bg-white bg-opacity-20 rounded-xl p-4 border border-white">
@@ -584,14 +581,14 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gold-300 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                                         </svg>
-                                        <h3 class="text-xl font-semibold text-white">Samsung Internet i inne</h3>
+                                        <h3 class="text-lg md:text-xl font-semibold text-white">Inne</h3>
                                     </div>
-                                    <p class="text-white ml-11">Kliknij ikonę menu i odznacz opcję "Wersja na komputer" lub "Wersja desktopowa"</p>
+                                    <p class="text-white ml-11 text-sm md:text-base">Kliknij ikonę menu i odznacz opcję "Wersja na komputer"</p>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="flex justify-center">
+                        <div class="flex justify-center items-center">
                             <div class="phone-mockup">
                                 <div class="phone-screen">
                                     <div class="browser-bar">
@@ -629,7 +626,7 @@
                     </div>
                     
                     <div class="mt-12 flex justify-end">
-                        <button onclick="showPage('page-step5')" class="bg-red-500 hover:bg-red-600 text-white text-lg font-medium py-3 px-8 rounded-lg transition-colors flex items-center border-2 border-gold-500">
+                        <button onclick="showPage('page-step5')" class="bg-red-500 hover:bg-red-600 text-white text-base md:text-lg font-medium py-3 px-6 md:px-8 rounded-lg transition-colors flex items-center border-2 border-gold-500">
                             Następny krok
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -672,7 +669,7 @@
                         <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Gotowe!</h2>
                     </div>
                     
-                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="grid grid-cols-2 gap-4 md:gap-12 items-center">
                         <div>
                             <div class="bg-gold-500 bg-opacity-20 border-l-4 border-gold-500 p-4 mb-6">
                                 <div class="flex">
@@ -682,7 +679,7 @@
                                         </svg>
                                     </div>
                                     <div class="ml-3">
-                                        <p class="text-white text-lg md:text-xl">
+                                        <p class="text-white text-base md:text-xl">
                                             Kalendarz stowarzyszenia został dodany do Twoich kalendarzy Google!
                                         </p>
                                     </div>
@@ -697,7 +694,7 @@
                                         </svg>
                                     </div>
                                     <div class="ml-3">
-                                        <p class="text-white text-lg md:text-xl">
+                                        <p class="text-white text-base md:text-xl">
                                             Aby zweryfikować czy kalendarz działa poprawnie, sprawdź czy w kalendarzu telefonu wyświetla się najbliższe spotkanie stowarzyszenia Wolnej Myśli - <strong>27.08 o godzinie 17:00</strong>.
                                         </p>
                                     </div>
@@ -705,12 +702,12 @@
                             </div>
                             
                             <div class="bg-white bg-opacity-20 rounded-xl p-4 border border-gold-500">
-                                <h3 class="text-xl font-semibold mb-4 text-white">Masz problemy?</h3>
-                                <p class="text-white text-lg mb-4">W razie problemów z dodaniem kalendarza, skontaktuj się z Kubą Mosjo.</p>
+                                <h3 class="text-lg md:text-xl font-semibold mb-4 text-white">Masz problemy?</h3>
+                                <p class="text-white text-base md:text-lg mb-4">W razie problemów z dodaniem kalendarza, skontaktuj się z Kubą Mosjo.</p>
                             </div>
                         </div>
                         
-                        <div class="flex justify-center">
+                        <div class="flex justify-center items-center">
                             <div class="phone-mockup">
                                 <div class="phone-screen bg-gray-100">
                                     <div class="bg-red-500 text-white p-4 flex justify-between items-center">
@@ -767,7 +764,7 @@
 
         <footer class="mt-8 text-center text-gray-300 text-sm">
             <div class="flex justify-center mb-4">
-                <div class="w-12 h-8 polish-flag-gradient rounded shadow-sm border border-gray-600"></div>
+                <img src="logo bez tła.png" alt="Małe logo Stowarzyszenia Wolnej Myśli" class="w-12 h-auto">
             </div>
             <p>© 2023 Stowarzyszenie Wolnej Myśli. Wszystkie prawa zastrzeżone.</p>
         </footer>

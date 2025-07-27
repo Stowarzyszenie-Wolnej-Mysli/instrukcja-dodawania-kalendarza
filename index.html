@@ -301,17 +301,21 @@
                         </div>
                         
                         <div class="flex justify-center items-center">
-                            <div class="relative w-full max-w-xs mx-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-full h-auto">
-                                    <path fill="#e5e7eb" d="M437.333 64H74.667C51.198 64 32 83.198 32 106.667v298.666C32 428.802 51.198 448 74.667 448h362.666C460.802 448 480 428.802 480 405.333V106.667C480 83.198 460.802 64 437.333 64z"/>
-                                    <path fill="#f9fafb" d="M437.333 64H74.667C51.198 64 32 83.198 32 106.667v42.666h448v-42.666C480 83.198 460.802 64 437.333 64z"/>
-                                    <circle fill="#ef4444" cx="74.667" cy="106.667" r="10.667"/><circle fill="#f59e0b" cx="106.667" cy="106.667" r="10.667"/><circle fill="#10b981" cx="138.667" cy="106.667" r="10.667"/>
-                                    <path fill="#ffffff" d="M74.667 170.667h362.666v256H74.667z"/>
-                                </svg>
-                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-2xl p-4 w-52 pulse gold-accent-border">
-                                    <div class="flex items-center justify-between mb-4"><div class="text-base font-medium text-gray-800">Wersja strony</div><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></div>
-                                    <div class="space-y-3 mb-4"><div class="flex items-center"><input type="radio" id="mobile" name="version" class="mr-3 h-4 w-4 text-red-600 focus:ring-red-500"><label for="mobile" class="text-sm text-gray-700">Wersja mobilna</label></div><div class="flex items-center"><input type="radio" id="desktop" name="version" class="mr-3 h-4 w-4 text-red-600 focus:ring-red-500" checked><label for="desktop" class="text-sm font-medium text-red-600">Wersja na komputer</label></div></div>
-                                    <button class="w-full bg-red-600 text-white text-sm py-2 px-4 rounded-lg border border-gold-500">Zastosuj</button>
+                            <div class="phone-mockup">
+                                <div class="phone-screen">
+                                    <div class="browser-bar">
+                                        <div class="browser-dot dot-red"></div>
+                                        <div class="browser-dot dot-yellow"></div>
+                                        <div class="browser-dot dot-green"></div>
+                                        <div class="browser-address">calendar.google.com</div>
+                                    </div>
+                                    <div class="p-4 flex flex-col items-center justify-center h-full bg-gray-100">
+                                        <div class="bg-white rounded-lg shadow-lg p-6 w-full gold-accent-border pulse">
+                                            <div class="flex items-center justify-between mb-6"><div class="text-lg font-medium text-gray-800">Wersja strony</div><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></div>
+                                            <div class="space-y-4 mb-6"><div class="flex items-center"><input type="radio" id="mobile-step2" name="view-mode-step2" class="mr-3 h-4 w-4 text-red-600 focus:ring-red-500"><label for="mobile-step2" class="text-base text-gray-700">Wersja mobilna</label></div><div class="flex items-center"><input type="radio" id="desktop-step2" name="view-mode-step2" class="mr-3 h-4 w-4 text-red-600 focus:ring-red-500" checked><label for="desktop-step2" class="text-base font-medium text-red-600">Wersja na komputer</label></div></div>
+                                            <button class="w-full bg-red-600 text-white text-base py-2 px-4 rounded-lg border border-gold-500">Zastosuj</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -485,8 +489,8 @@
                     </div>
                     
                     <div class="text-center mb-8">
-                        <div class="step-number bg-gold-500 border-2 border-red-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                        <div class="step-number bg-green-600 border-2 border-gold-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                         </div>
                         <h2 class="text-2xl md:text-3xl font-bold mb-2 text-gray-900">Gotowe!</h2>
                     </div>

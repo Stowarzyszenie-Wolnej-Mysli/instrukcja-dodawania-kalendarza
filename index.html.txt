@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jak dodać kalendarz stowarzyszenia Wolnej Myśli</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f7ff;
+            scroll-behavior: smooth;
+        }
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .calendar-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .calendar-month {
+            background-color: #e74c3c;
+            color: white;
+            width: 100%;
+            text-align: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 2px 0;
+        }
+        .calendar-day {
+            font-size: 32px;
+            font-weight: bold;
+            line-height: 1;
+        }
+        .phone-mockup {
+            position: relative;
+            width: 280px;
+            height: 560px;
+            background-color: #111;
+            border-radius: 36px;
+            padding: 12px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+            margin: 0 auto;
+        }
+        .phone-screen {
+            background-color: #fff;
+            border-radius: 24px;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .browser-bar {
+            background-color: #f1f1f1;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        .browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .dot-red { background-color: #ff5f57; }
+        .dot-yellow { background-color: #ffbd2e; }
+        .dot-green { background-color: #28c940; }
+        .browser-address {
+            background-color: #e1e1e1;
+            border-radius: 12px;
+            padding: 4px 10px;
+            font-size: 10px;
+            flex-grow: 1;
+            margin-left: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .step-number {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.8rem;
+            margin: 0 auto 1.5rem auto;
+        }
+        .progress-bar {
+            height: 8px;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            transition: width 0.3s ease;
+        }
+        .desktop-mockup {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .desktop-browser {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .desktop-browser-bar {
+            background-color: #f1f5f9;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .desktop-browser-content {
+            background-color: white;
+            padding: 20px;
+            min-height: 300px;
+        }
+        .link-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: monospace;
+            word-break: break-all;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Strona główna / Krok 1 -->
+        <div id="page-main" class="page active">
+            <header class="text-center mb-12">
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-12 px-6 rounded-2xl shadow-lg relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="absolute bottom-0 left-0">
+                            <path fill="rgba(255,255,255,0.1)" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                        </svg>
+                    </div>
+                    <div class="relative z-10">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4">Kalendarz stowarzyszenia</h1>
+                        <p class="text-xl opacity-90 mb-8">Prosty poradnik dodawania kalendarza</p>
+                        <div class="flex justify-center">
+                            <div class="calendar-icon">
+                                <div class="calendar-month">SIE</div>
+                                <div class="calendar-day">27</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-12">
+                <div class="text-center mb-8">
+                    <div class="step-number">1</div>
+                    <h2 class="text-3xl font-bold mb-4">Otwórz link do kalendarza</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="text-xl text-gray-700 mb-6">Kliknij poniższy link, aby otworzyć kalendarz stowarzyszenia Wolnej Myśli:</p>
+                        
+                        <div class="bg-indigo-50 rounded-xl p-6 mb-6 text-center">
+                            <a href="https://calendar.google.com/calendar/u/0?cid=NWIwMDJmYzFkODUxZGI0OTJjODQzYTAxMGM1NWYwZjI1YTBiYzI4ZDY3MmNhZTdiM2I1ZTY1MWY4NWIxNGMwZUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium text-lg flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                Link do kalendarza stowarzyszenia
+                            </a>
+                        </div>
+                        
+                        <p class="text-gray-700 mb-3">Link źródłowy (jeśli hiperłącze nie działa):</p>
+                        <div class="link-box text-sm">
+                            https://calendar.google.com/calendar/u/0?cid=NWIwMDJmYzFkODUxZGI0OTJjODQzYTAxMGM1NWYwZjI1YTBiYzI4ZDY3MmNhZTdiM2I1ZTY1MWY4NWIxNGMwZUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <div class="browser-bar">
+                                    <div class="browser-dot dot-red"></div>
+                                    <div class="browser-dot dot-yellow"></div>
+                                    <div class="browser-dot dot-green"></div>
+                                    <div class="browser-address">calendar.google.com</div>
+                                </div>
+                                <div class="p-4 flex flex-col items-center justify-center h-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-24 h-24 mb-6">
+                                        <rect width="16" height="16" x="12" y="16" fill="#fff"/>
+                                        <polygon fill="#1e88e5" points="32,16 32,8 24,8 24,16 16,16 16,24 24,24 24,32 32,32 32,24 40,24 40,16"/>
+                                        <path fill="#1565c0" d="M24,4v4h8v8h8V8c0-2.2-1.8-4-4-4H24z"/>
+                                        <path fill="#1565c0" d="M4,16h8V8h-4c-2.2,0-4,1.8-4,4V16z"/>
+                                        <path fill="#1565c0" d="M4,40c0,2.2,1.8,4,4,4h8v-8H4V40z"/>
+                                        <path fill="#1565c0" d="M36,44c2.2,0,4-1.8,4-4v-4h-8v8H36z"/>
+                                    </svg>
+                                    <div class="text-center text-lg font-medium mb-4">Kalendarz Google</div>
+                                    <div class="bg-indigo-100 rounded-lg p-4 text-center pulse">
+                                        <span class="font-medium">Kliknij link, aby otworzyć</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 flex justify-end">
+                    <button onclick="showPage('page-step2')" class="bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-medium py-3 px-8 rounded-lg transition-colors flex items-center">
+                        Następny krok
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Krok 2 -->
+        <div id="page-step2" class="page">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex justify-between items-center mb-6">
+                    <button onclick="showPage('page-main')" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                        </svg>
+                        Wstecz
+                    </button>
+                    <div class="text-gray-500">Krok 2 z 5</div>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 40%"></div>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-8">
+                    <div class="step-number">2</div>
+                    <h2 class="text-3xl font-bold mb-4">Przełącz na tryb komputerowy</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="text-xl text-gray-700 mb-6">Na urządzeniu mobilnym musisz przełączyć przeglądarkę na tryb komputerowy:</p>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-indigo-50 rounded-xl p-6">
+                                <div class="flex items-center mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                                    </svg>
+                                    <h3 class="text-xl font-semibold">Chrome</h3>
+                                </div>
+                                <p class="text-gray-700 ml-11">Kliknij trzy kropki ⋮ w prawym górnym rogu i zaznacz opcję "Wersja na komputer"</p>
+                            </div>
+                            
+                            <div class="bg-indigo-50 rounded-xl p-6">
+                                <div class="flex items-center mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <h3 class="text-xl font-semibold">Safari</h3>
+                                </div>
+                                <p class="text-gray-700 ml-11">Stuknij ikonę "aA" w pasku adresu i wybierz "Poproś o wersję na komputer"</p>
+                            </div>
+                            
+                            <div class="bg-indigo-50 rounded-xl p-6">
+                                <div class="flex items-center mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                                    </svg>
+                                    <h3 class="text-xl font-semibold">Samsung Internet i inne</h3>
+                                </div>
+                                <p class="text-gray-700 ml-11">Kliknij ikonę menu (trzy linie lub kropki) i znajdź opcję "Wersja na komputer" lub "Wersja desktopowa"</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <div class="relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-80 h-80">
+                                <path fill="#78909c" d="M437.333 64H74.667C51.198 64 32 83.198 32 106.667v298.666C32 428.802 51.198 448 74.667 448h362.666C460.802 448 480 428.802 480 405.333V106.667C480 83.198 460.802 64 437.333 64z"/>
+                                <path fill="#455a64" d="M437.333 64H74.667C51.198 64 32 83.198 32 106.667v42.666h448v-42.666C480 83.198 460.802 64 437.333 64z"/>
+                                <circle fill="#f44336" cx="74.667" cy="106.667" r="10.667"/>
+                                <circle fill="#ffeb3b" cx="106.667" cy="106.667" r="10.667"/>
+                                <circle fill="#4caf50" cx="138.667" cy="106.667" r="10.667"/>
+                                <path fill="#eceff1" d="M74.667 170.667h362.666v256H74.667z"/>
+                            </svg>
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-6 w-64 pulse">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="text-lg font-medium">Wersja strony</div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </div>
+                                <div class="space-y-4 mb-6">
+                                    <div class="flex items-center">
+                                        <input type="radio" id="mobile" name="version" class="mr-3 h-4 w-4">
+                                        <label for="mobile" class="text-base">Wersja mobilna</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="radio" id="desktop" name="version" class="mr-3 h-4 w-4" checked>
+                                        <label for="desktop" class="text-base font-medium text-indigo-600">Wersja na komputer</label>
+                                    </div>
+                                </div>
+                                <button class="w-full bg-indigo-500 text-white text-base py-2 px-4 rounded-lg">
+                                    Zastosuj
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 flex justify-end">
+                    <button onclick="showPage('page-step3')" class="bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-medium py-3 px-8 rounded-lg transition-colors flex items-center">
+                        Następny krok
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Krok 3 (dawniej 4) -->
+        <div id="page-step3" class="page">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex justify-between items-center mb-6">
+                    <button onclick="showPage('page-step2')" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                        </svg>
+                        Wstecz
+                    </button>
+                    <div class="text-gray-500">Krok 3 z 5</div>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%"></div>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-8">
+                    <div class="step-number">3</div>
+                    <h2 class="text-3xl font-bold mb-4">Potwierdź dodanie kalendarza</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="text-xl text-gray-700 mb-6">Po otwarciu linku w trybie komputerowym pojawi się okno z prośbą o potwierdzenie.</p>
+                        
+                        <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-green-700 text-lg">
+                                        Kliknij "Tak" lub "Dodaj", aby potwierdzić dodanie kalendarza.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-indigo-50 rounded-xl p-6">
+                            <h3 class="text-xl font-semibold mb-4">Co się stanie po dodaniu kalendarza?</h3>
+                            <ul class="space-y-3 text-lg">
+                                <li class="flex items-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Kalendarz pojawi się na Twojej liście</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Będziesz otrzymywać powiadomienia</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span>Wydarzenia będą widoczne w aplikacji Kalendarz</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <div class="bg-white rounded-xl shadow-xl p-8 max-w-sm w-full">
+                            <div class="flex items-center mb-8">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-12 h-12 mr-4">
+                                    <rect width="16" height="16" x="12" y="16" fill="#fff"/>
+                                    <polygon fill="#1e88e5" points="32,16 32,8 24,8 24,16 16,16 16,24 24,24 24,32 32,32 32,24 40,24 40,16"/>
+                                    <path fill="#1565c0" d="M24,4v4h8v8h8V8c0-2.2-1.8-4-4-4H24z"/>
+                                    <path fill="#1565c0" d="M4,16h8V8h-4c-2.2,0-4,1.8-4,4V16z"/>
+                                    <path fill="#1565c0" d="M4,40c0,2.2,1.8,4,4,4h8v-8H4V40z"/>
+                                    <path fill="#1565c0" d="M36,44c2.2,0,4-1.8,4-4v-4h-8v8H36z"/>
+                                </svg>
+                                <div class="text-2xl font-medium">Dodać kalendarz?</div>
+                            </div>
+                            <div class="mb-8">
+                                <div class="text-lg text-gray-600 mb-2">Nazwa kalendarza:</div>
+                                <div class="text-xl font-medium">Stowarzyszenie Wolnej Myśli</div>
+                            </div>
+                            <div class="flex space-x-4">
+                                <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-3 px-6 rounded-lg flex-1 transition-colors text-lg">
+                                    Anuluj
+                                </button>
+                                <button class="pulse bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg flex-1 transition-colors text-lg">
+                                    Dodaj
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 flex justify-end">
+                    <button onclick="showPage('page-step4')" class="bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-medium py-3 px-8 rounded-lg transition-colors flex items-center">
+                        Następny krok
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Krok 4 (dawniej 5) -->
+        <div id="page-step4" class="page">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex justify-between items-center mb-6">
+                    <button onclick="showPage('page-step3')" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                        </svg>
+                        Wstecz
+                    </button>
+                    <div class="text-gray-500">Krok 4 z 5</div>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-8">
+                    <div class="step-number">4</div>
+                    <h2 class="text-3xl font-bold mb-4">Wyłącz tryb komputerowy</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p class="text-xl text-gray-700 mb-6">Po dodaniu kalendarza możesz wrócić do normalnego trybu przeglądania:</p>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-indigo-50 rounded-xl p-6">
+                                <div class="flex items-center mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                                    </svg>
+                                    <h3 class="text-xl font-semibold">Chrome</h3>
+                                </div>
+                                <p class="text-gray-700 ml-11">Kliknij trzy kropki ⋮ w prawym górnym rogu i odznacz opcję "Wersja na komputer"</p>
+                            </div>
+                            
+                            <div class="bg-indigo-50 rounded-xl p-6">
+                                <div class="flex items-center mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <h3 class="text-xl font-semibold">Safari</h3>
+                                </div>
+                                <p class="text-gray-700 ml-11">Stuknij ikonę "aA" w pasku adresu i wybierz "Wersja mobilna"</p>
+                            </div>
+                            
+                            <div class="bg-indigo-50 rounded-xl p-6">
+                                <div class="flex items-center mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                                    </svg>
+                                    <h3 class="text-xl font-semibold">Samsung Internet i inne</h3>
+                                </div>
+                                <p class="text-gray-700 ml-11">Kliknij ikonę menu i odznacz opcję "Wersja na komputer" lub "Wersja desktopowa"</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <div class="browser-bar">
+                                    <div class="browser-dot dot-red"></div>
+                                    <div class="browser-dot dot-yellow"></div>
+                                    <div class="browser-dot dot-green"></div>
+                                    <div class="browser-address">calendar.google.com</div>
+                                </div>
+                                <div class="p-4 flex flex-col items-center justify-center h-full">
+                                    <div class="bg-white rounded-lg shadow-lg p-6 w-full">
+                                        <div class="flex items-center justify-between mb-6">
+                                            <div class="text-lg font-medium">Wersja strony</div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </div>
+                                        <div class="space-y-4 mb-6">
+                                            <div class="flex items-center">
+                                                <input type="radio" id="mobile-view" name="view-mode" class="mr-3 h-4 w-4" checked>
+                                                <label for="mobile-view" class="text-base font-medium text-indigo-600">Wersja mobilna</label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input type="radio" id="desktop-view" name="view-mode" class="mr-3 h-4 w-4">
+                                                <label for="desktop-view" class="text-base">Wersja na komputer</label>
+                                            </div>
+                                        </div>
+                                        <button class="w-full bg-indigo-500 text-white text-base py-2 px-4 rounded-lg">
+                                            Zastosuj
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 flex justify-end">
+                    <button onclick="showPage('page-step5')" class="bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-medium py-3 px-8 rounded-lg transition-colors flex items-center">
+                        Następny krok
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Krok 5 (dawniej 6) -->
+        <div id="page-step5" class="page">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex justify-between items-center mb-6">
+                    <button onclick="showPage('page-step4')" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                        </svg>
+                        Wstecz
+                    </button>
+                    <div class="text-gray-500">Krok 5 z 5</div>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 100%"></div>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-8">
+                    <div class="step-number bg-green-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">Gotowe!</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="bg-green-50 border-l-4 border-green-400 p-6 mb-6">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-8 w-8 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-green-700 text-xl">
+                                        Kalendarz stowarzyszenia został dodany do Twoich kalendarzy Google!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-indigo-50 border-l-4 border-indigo-400 p-6 mb-6">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-8 w-8 text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-indigo-700 text-xl">
+                                        Aby zweryfikować czy kalendarz działa poprawnie, sprawdź czy w kalendarzu telefonu wyświetla się najbliższe spotkanie stowarzyszenia Wolnej Myśli - <strong>27.08 o godzinie 17:00</strong>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 rounded-xl p-6">
+                            <h3 class="text-xl font-semibold mb-4">Masz problemy?</h3>
+                            <p class="text-gray-700 text-lg mb-4">W razie problemów z dodaniem kalendarza, skontaktuj się z Kubą Mosjo.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <div class="bg-indigo-600 text-white p-4 flex justify-between items-center">
+                                    <div>
+                                        <div class="text-sm opacity-80">Sierpień</div>
+                                        <div class="font-medium">2023</div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="p-3">
+                                    <div class="grid grid-cols-7 gap-1 text-center text-xs mb-2">
+                                        <div>Pn</div>
+                                        <div>Wt</div>
+                                        <div>Śr</div>
+                                        <div>Cz</div>
+                                        <div>Pt</div>
+                                        <div>So</div>
+                                        <div>Nd</div>
+                                    </div>
+                                    <div class="grid grid-cols-7 gap-1 text-center text-xs">
+                                        <div class="p-1 text-gray-400">31</div>
+                                        <div class="p-1">1</div>
+                                        <div class="p-1">2</div>
+                                        <div class="p-1">3</div>
+                                        <div class="p-1">4</div>
+                                        <div class="p-1">5</div>
+                                        <div class="p-1">6</div>
+                                        <div class="p-1">7</div>
+                                        <div class="p-1">8</div>
+                                        <div class="p-1">9</div>
+                                        <div class="p-1">10</div>
+                                        <div class="p-1">11</div>
+                                        <div class="p-1">12</div>
+                                        <div class="p-1">13</div>
+                                        <div class="p-1">14</div>
+                                        <div class="p-1">15</div>
+                                        <div class="p-1">16</div>
+                                        <div class="p-1">17</div>
+                                        <div class="p-1">18</div>
+                                        <div class="p-1">19</div>
+                                        <div class="p-1">20</div>
+                                        <div class="p-1">21</div>
+                                        <div class="p-1">22</div>
+                                        <div class="p-1">23</div>
+                                        <div class="p-1">24</div>
+                                        <div class="p-1">25</div>
+                                        <div class="p-1">26</div>
+                                        <div class="p-1 bg-indigo-100 rounded-full font-medium text-indigo-800 pulse">27</div>
+                                        <div class="p-1">28</div>
+                                        <div class="p-1">29</div>
+                                        <div class="p-1">30</div>
+                                        <div class="p-1">31</div>
+                                        <div class="p-1 text-gray-400">1</div>
+                                        <div class="p-1 text-gray-400">2</div>
+                                    </div>
+                                </div>
+                                <div class="p-3 border-t">
+                                    <div class="text-sm font-medium mb-2">Nadchodzące wydarzenia:</div>
+                                    <div class="bg-white rounded-lg shadow p-3 mb-2 border-l-4 border-indigo-500 pulse">
+                                        <div class="text-xs text-gray-500">27 sierpnia, 17:00-19:00</div>
+                                        <div class="font-medium">Spotkanie stowarzyszenia Wolnej Myśli</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 flex justify-center">
+                    <button onclick="showPage('page-main')" class="bg-green-500 hover:bg-green-600 text-white text-lg font-medium py-3 px-8 rounded-lg transition-colors flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                        </svg>
+                        Wróć do początku
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-8 text-center text-gray-500 text-sm">
+            <p>© 2023 Stowarzyszenie Wolnej Myśli. Wszystkie prawa zastrzeżone.</p>
+        </footer>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'965b72380781c3f1',t:'MTc1MzYxMjA2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
